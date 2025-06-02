@@ -1,0 +1,16 @@
+package com.java.threads;
+
+public class FactoryEx {
+    private FactoryEx instance;
+
+    public FactoryEx(FactoryEx instance) {
+        this.instance = instance;
+    }
+
+    public FactoryEx getInstance() {
+       if(instance==null){
+
+       }
+        return instance;
+    }
+}

@@ -1,0 +1,8 @@
+package exceptionhandling;
+
+public class SuperClass {
+    void method()
+    {
+        System.out.println("Super class");
+    }
+}

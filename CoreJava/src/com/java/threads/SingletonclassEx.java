@@ -1,0 +1,41 @@
+package com.java.threads;
+
+public class SingletonclassEx {
+
+    private static SingletonclassEx singleton_instance=null;
+    public String s;
+    private SingletonclassEx(){
+        s= "String of singleton class";
+    }
+    public static synchronized SingletonclassEx getInstance(){
+        if (singleton_instance==null){
+            singleton_instance=new SingletonclassEx();
+        }
+        return singleton_instance;
+    }
+
+    public static void main(String[] args) {
+        SingletonclassEx x = SingletonclassEx.getInstance();
+        SingletonclassEx y = SingletonclassEx.getInstance();
+        SingletonclassEx z = SingletonclassEx.getInstance();
+        System.out.println("Hash code of x: " + x.hashCode());
+        System.out.println("Hash code of y : " + y.hashCode() + " " + y.s);
+        System.out.println("Hash code of y : " + z.hashCode() + " " + z.s);
+        if (x == y && y == z) {
+            System.out.println("Three objects point to the same memory location on the heap, i.e, to the same object");
+        } else {
+            System.out.println("Three objects Do not point to the same memory location on the heap, i.e, to the same object");
+        }
+        x.s = (x.s).toUpperCase();
+        System.out.println("string from x:"+x.s+",y:"+y.s);
+        y.s=(y.s).toLowerCase();
+        System.out.println("string from x:"+x.s+",y:"+y.s );
+        System.out.println("string from y:"+y.s+",z:"+z.s);
+        x.s= "leela";
+        System.out.println(y.s);
+        /* "NullPointerException" here, and when w remove 'x' it don't affect other variables(obj's)
+        x=null;
+        System.out.println(x.hashCode());*/
+        System.out.println(y.hashCode());
+    }
+}

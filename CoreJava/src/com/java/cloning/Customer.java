@@ -1,0 +1,71 @@
+package com.java.cloning;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class Customer implements  Cloneable {
+    private  String name;
+    private int id;
+    private Map<String, String> prop;
+    public Customer(){
+
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", prop=" + prop +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Map<String, String> getProp() {
+        return prop;
+    }
+
+    public void setProp(Map<String, String> prop) {
+        this.prop = prop;
+    }
+
+    public Customer(String name, int id, Map<String, String> prop) {
+        this.name = name;
+        this.id = id;
+        this.prop = prop;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+    // super.clone() will perform below action
+      /*  Customer customer=new Customer();
+        customer.id=this.id;
+        customer.name=this.name;
+        customer.setProp(this.getProp());*/
+        Customer clonedObj= (Customer) super.clone();
+
+        Map<String,String> clonedMap=new HashMap<>();
+        for (String key:this.getProp().keySet()){
+            clonedMap.put(key,this.getProp().get(key));
+        }
+
+        clonedObj.setProp(clonedMap);
+       // return super.clone();
+        return clonedObj;
+    }
+}

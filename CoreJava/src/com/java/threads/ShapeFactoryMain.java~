@@ -1,0 +1,11 @@
+package com.java.threads;
+
+public class ShapeFactoryMain {
+    public static void main(String[] args) {
+        ShapeFactoryEx shapeFactoryEx=new ShapeFactoryEx();
+        Shape shape2= shapeFactoryEx.getInstance("Circle");
+        shape2.draw();
+        Shape shape1=shapeFactoryEx.getInstance("rectangle");
+        shape1.draw();
+    }
+}

@@ -1,0 +1,386 @@
+package com.java.lambda;
+
+import java.util.*;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
+
+public class EvenOddNums {
+    String str;
+
+    public static void main(String[] args) {
+        // Given a list of integers, separate odd and even numbers?
+        List<Integer> listOfIntegers= Arrays.asList(3,8,12,15,17,22,27,35,39,41,44,50);
+        Map<Boolean, List<Integer>> oddEvenNumsMap=listOfIntegers.stream().collect(Collectors.partitioningBy(i->i%2==0));
+        //System.out.println(oddEvenNumsMap);
+        // if we want only value part
+        List<List<Integer>> checkedList= new ArrayList<>(oddEvenNumsMap.values());
+        System.out.println(checkedList);
+
+        // this also returns same as above
+        /*for (Map.Entry<Boolean,List<Integer>>entry :entrySet){
+            System.out.println("------------------");
+            if (entry.getKey()){
+                System.out.println("Even Numbers");
+            }
+            else {
+                System.out.println("Odd numbers");
+            }
+            System.out.println("-------------------");
+            List<Integer> list=entry.getValue();
+            for (int i :list){
+                System.out.println(i);
+            }
+        }*/
+        //How do you merge two unsorted arrays into single sorted array without duplicates?
+       /* int a[] = new int[] {4,2,5,7};
+        int b[]=new int[] {8,3,9,2};
+        int [] c =IntStream.concat(Arrays.stream(a),Arrays.stream(b)).sorted().distinct().toArray();
+        System.out.println(Arrays.toString(c));*/
+
+       /* //Find sum of all digits of a number in Java 8?
+
+        int i = 15437;
+        Integer sumofDigits= Stream.of(String.valueOf(i).split("")).mapToInt(Integer::parseInt).sum();
+        System.out.println(sumofDigits);*/
+
+//        Find second largest number in an integer array?
+
+        // List<Integer> listOfIntegers= Arrays.asList(12,6,7,23,34,57,85);
+
+       /* int secondLargest = findSecondLargest(listOfIntegers);
+        System.out.println("Second largest num is :"+secondLargest);*/
+       /* for (int n: listOfIntegers){
+            System.out.println(n);
+        }*/
+        /*for (int i =0; i<=listOfIntegers.size(); i++)
+        {
+            System.out.println(listOfIntegers.get(i));
+        }
+        int secondLargestNumb=listOfIntegers.stream().sorted(Comparator.reverseOrder())
+                .skip(1).findFirst().orElseThrow();
+        System.out.println(secondLargestNumb);
+        */
+//      Given a list of strings, sort them according to increasing order of their length?
+        /*List<String> listOfStrings = Arrays.asList("Leela", "is" , "a", "software", "developer");
+
+        listOfStrings.stream().sorted((s1 , s2) -> s1.length() - s2.length()).forEach(System.out::println);*/
+/*//Given an integer array, find sum and average of all elements?
+        int a[] = new int[] {4,2,5,7};
+        int sum =Arrays.stream(a).sum();
+        System.out.println("Sum is:" + sum);
+
+        double average = Arrays.stream(a).average().orElseThrow();
+        System.out.println("Average is:" + average);*/
+
+        //How do you find common elements between two arrays?
+        /*Integer[] arr1 = {71, 21, 34, 89, 56, 28};
+        Integer[] arr2 = {12, 56, 17, 21, 94, 34};
+
+        Set<Integer> set1 = new HashSet<> (Arrays.asList(arr1));
+        List<Integer> common = Arrays.stream(arr2).filter(x -> set1.contains(x)).collect(Collectors.toList());
+        System.out.println(common);*/
+        /*Set<Integer> set2 = new HashSet<> (Arrays.asList(arr2));
+
+        set1.retainAll(set2);
+        System.out.println(set1);*/
+        //Reverse each word of a string using Java 8 streams?
+        String str = " Java concept of the day";
+
+        String result = Arrays.stream(str.split(" ")).map(word -> new StringBuilder(word).reverse().toString())
+                .collect(Collectors.joining(" "));
+        System.out.println("Reversed words and order: "+ result);
+    /*// Find the word with second highest length (it returns word)
+        String str1 = " Java concept of the day";
+        String ans = Arrays.stream(str1.split( " ")).sorted((s1,s2) -> s2.length() - s1.length()).skip(1).findFirst().orElse(null);
+        // Find second highest length word in the given sentence(it returns length of the word)
+        int ans1 = Arrays.stream(str1.split( " ")).map(x -> x.length()).sorted(Comparator.reverseOrder()).skip(1).findFirst().orElseThrow();
+        System.out.println(ans);
+        System.out.println(ans1);*/
+
+
+        /*// finding spaces in a sentence
+        // placing * in place of space
+        String highlighted = str.chars().mapToObj(c -> c == ' ' ? " * " : String.valueOf((char) c))
+        .collect(Collectors.joining());
+        System.out.println("with tags: "+highlighted);
+
+        // space counts
+        long spaces= str.chars().filter(c -> c == ' ').count();
+        System.out.println("spaces : " + spaces);
+*/
+        //How do you find sum of first 10 natural numbers?
+        /*int sum = IntStream.rangeClosed(1,10).sum();
+        System.out.println(sum);*/
+
+        // Reverse an integer array
+        /*int[] arr = new int[] {5, 1, 7, 3, 9, 6};
+        int[] reversedArray=IntStream.rangeClosed(1,arr.length).map(i-> arr[arr.length-i]).toArray();
+        System.out.println("Reversed Array is: " + Arrays.toString(reversedArray));*/
+//        Collections.reverse(listOfIntegers);
+//        System.out.println("Revrsed list is:" + listOfIntegers);
+
+
+        /*//Print first 10 even numbers
+        IntStream.rangeClosed(1, 10).map(i -> i * 2).forEach(System.out::println);
+        //Print first 10 Odd numbers
+        IntStream.rangeClosed(1,10).map(i-> i*2 + 1).forEach(System.out::println);*/
+
+//How do you find the occurence of each element in an array?
+        List<String> listOfStrings = Arrays.asList("Pen", "Eraser", "Note Book", "Pen", "Pencil", "Pen", "Note Book", "Pencil");
+        Map<String,Long> elementCountMap=listOfStrings.stream().collect(Collectors
+        .groupingBy(x->x,Collectors.counting()));
+        System.out.println(elementCountMap);
+        // this will return most repeated element in the given array
+        Map.Entry<String,Long> mostFrequentElement =elementCountMap.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+        System.out.println("Most frequent element:"+ mostFrequentElement.getKey());
+        System.out.println("count:"+ mostFrequentElement.getValue());
+
+        /*String str = "ROTATOR";
+        boolean isItPalindrome=IntStream.range(0,str.length()/2).noneMatch(i-> str.charAt(i) != str.charAt(str.length()-i-1));
+        if (isItPalindrome){
+            System.out.println(str + ": is a palindrome");
+        }
+        else {
+            System.out.println(str + ": is not a palindrome");
+        }
+        //Alternate way
+        String reversedString = new StringBuffer(str).reverse().toString();
+        boolean isPalindrome=reversedString.equals(str);
+        System.out.println(isPalindrome);*/
+        //How do you extract duplicate elements from an array?
+        /*List<Integer> listOfIntegers1 = Arrays.asList(111, 222, 333, 111, 555, 333, 777, 222);
+        Set<Integer> unique= new HashSet<>();
+
+        Set<Integer> duplictes = listOfIntegers1.stream().filter(i-> ! unique.add(i)).collect(Collectors.toSet());
+        System.out.println(duplictes);*/
+        //How do you get last element of an array
+        List<String> listOfStrings1 = Arrays.asList("One", "Two", "Three", "Four", "Five", "Six");
+        String lastElement = listOfStrings1.stream().skip(listOfStrings1.size()-1).findFirst().orElse(null);
+
+        System.out.println("Last element is:" + lastElement);
+
+       /* // 11) ,12) find the first non-repeated char in a given string
+        // this part gives every char occurrence
+        String str = "Hello world";
+        Map<Character, Long> ans =str.chars().mapToObj(c-> (char)c)
+                .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new,Collectors.counting()));
+        System.out.println(ans);
+        // this part gives first non-repeated char
+        char res=ans.entrySet().stream().filter(c->c.getValue()== 1).map(c->c.getKey()).findFirst().get();
+        System.out.println("first non-repeated char :"+res);
+        char repeatedChar=ans.entrySet().stream().filter(c->c.getValue()> 1).map(c->c.getKey()).findFirst().get();
+        System.out.println("first repeated char: "+ repeatedChar);*/
+
+    /*//13) given  an integer array, group the number by range like,
+        //{0=[2, 3], 10=[10, 14], 20=[20, 28], 30=[30, 35], 40=[41, 46], 50=[52, 57]}
+       List<Integer> listofIntegers = Arrays.asList(2,3,10,14,20,28,30,35,41,46,52,57);
+        Map<Integer,List<Integer>> groupList=listofIntegers.stream()
+                .collect(Collectors
+                        .groupingBy(integer -> integer/10*10,LinkedHashMap::new,Collectors.toList()));
+        System.out.println(groupList);*/
+
+        /*int[] arr = {1,2,3,4,5};
+//        Arrays.stream(arr).mapToObj(x->x).sorted().forEach(System.out::print);
+// reverse order
+        Arrays.stream(arr).mapToObj(x->x).sorted(Collections.reverseOrder()).forEach(System.out::print);*/
+    /*// 10) find the sum of unique ele's
+        int[] arr = {1,6,7,8,1,1,8,8,7};
+        int res =Arrays.stream(arr).distinct().sum();
+        System.out.println(res);*/
+
+    /*//14) Given a list of strings, create a list that contains only integers
+        String[] s= {"abc","123","456","xyz"};
+        List<Integer> integerList =Arrays.stream(s).filter(x->x.matches("[0-9]+"))
+                .map(Integer::valueOf).toList();
+        System.out.println(integerList);*/
+
+        /*// 15 Find the products of the first two elements in an array
+        int[] arr = {6,5,6,9,2,4};
+        int res =Arrays.stream(arr).boxed().toList()
+                .stream().limit(3).reduce(1,(a,b)->a*b);
+        System.out.println(res);*/
+
+        /*//17) Write a stream program to multiply alternative numbers in an array
+        int[] arr = {4,5,1,7,2,9,2};
+        int res =IntStream.range(0, arr.length).filter(x->x%2==0)
+                        .map(x->arr[x]).reduce(1,(a,b)->a*b);
+        System.out.println(res);*/
+/*
+        // 18) Write a program to multiply 1st and last element, 2nd and 2nd last element etc.
+        int arr[] = {4,5,1,7,2,9};
+        IntStream.range(0,arr.length/2).map(x->arr[x]* arr[arr.length-x-1]).forEach(System.out::println);*/
+
+        /*//19 Write a stream program to move all zero’s to beginning of array
+        int[] arr= {5,0,1,0,8,0};
+        List<Integer> list=Arrays.stream(arr).boxed().toList();
+        List<Integer> zeroes=list.stream().filter(x->x==0).toList();
+        List<Integer> nonZeroes=list.stream().filter(x->x!=0).toList();
+        List<Integer> list1= new ArrayList<>();
+        list1.addAll(zeroes);
+        list1.addAll(nonZeroes);
+        System.out.println(list1);*/
+
+        /*//20 In a given array of integers, return true if it contains distinct values
+        int[] arr= {5,0,1,0,8,0};
+        List<Integer> list=Arrays.stream(arr).boxed().toList();
+        Map<Integer,Long> map=list.stream().collect(Collectors.groupingBy(x->x,Collectors.counting()));
+        System.out.println(map);
+        Collection<Long> view =map.values();
+        System.out.println(view);
+        boolean distinctChecker=view.stream().noneMatch(x->x>1);
+        System.out.println(distinctChecker);*/
+
+        /*// 22 Find the sum of all the elements in a list.
+        List<Integer> list=Arrays.asList(1,2,3,4,5);
+        int sum=list.stream().mapToInt(Integer::intValue).sum();
+        System.out.println(sum);*/
+       /* //23 sort the list of strings in an alphabatical order
+        List<String> str = Arrays.asList("Amazon","myntra","flipcart","puma","nike");
+        List<String> sortedString=str.stream().sorted().toList();
+        System.out.println(sortedString);*/
+       /* // 24 Convert a list of integers to a list of their squares
+        List<Integer> list = Arrays.asList(1,2,3,4,5);
+        List<Integer> squrs = list.stream().map(x->x*x).toList();
+        System.out.println(squrs);*/
+        //25 Find and print the distinct odd numbers
+        /*List<Integer> list = Arrays.asList(1,2,3,4,5,6,7,8,9,9,10);
+        List<Integer> distinctOddNum=list.stream().filter(n->n%2!=0).distinct().toList();
+        System.out.println("Distinct odd num's are:"+distinctOddNum);*/
+        /*//26 Find the union of two lists of integers
+        List<Integer> list1 = Arrays.asList(1,2,3,4,5);
+        List<Integer> list2 = Arrays.asList(6,7,8,9);
+        List<Integer> unionList=Stream.concat(list1.stream(),list2.stream()).toList();
+        System.out.print("union list is:"+unionList);*/
+
+        /*// 27 Find the kth smallest element in a list of integers.
+        List<Integer> list = Arrays.asList(7,1,6,5,3,8,2,9);
+        int k=3;
+        List<Integer> sortedList =list.stream().sorted().toList();
+        System.out.println(sortedList);
+        int small=sortedList.stream().skip(k-1).findFirst().get();
+        System.out.println("kth smallest ele is:"+small);*/
+        //28 Remove all non-numeric characters from a list.
+       /* List<String> str1 = Arrays.asList("a1b2c3","1a,2bc","abc3");
+        Pattern pattern=Pattern.compile("[^0-9]");
+        List<String> non_numericVals=str1.stream().map(x-> pattern.matcher(x).replaceAll("")).toList();
+        System.out.println("non-numeric characters"+non_numericVals);*/
+
+        /*//29 Find and print strings containing only digits.
+        List<String> str = Arrays.asList("123","1a,2bc","abc3","45");
+        List<String> digitsStr=str.stream().filter(x-> x.matches("[0-9]+")).toList();
+        System.out.println("Strings containing digits :" + digitsStr);*/
+
+        /*//30 Convert a list of strings to uppercase.
+        List<String> list = Arrays.asList("leela is a software developer","in a good mnc company","with a good salary");
+        List<String> uppercaseStrs=list.stream().map(String::toUpperCase).toList();
+        System.out.println("Upper case Strings are:"+ uppercaseStrs);*/
+
+        /*// 31 Calculate the average of all the numbers.
+        List<Integer> list = Arrays.asList(1,2,3,4,5);
+        double avrg =list.stream().mapToDouble(Integer::doubleValue).average().getAsDouble();
+        System.out.println("Average of all he num's: "+avrg);*/
+
+        // 32) Find the intersection of two lists using Java streams
+//        List<Integer> list= Arrays.asList(1,2,3,4,5);
+//        List<Integer> list1=Arrays.asList(3,5,6,7);
+//        //List<Integer> commonRes=list.stream().filter(list1::contains).toList();
+//            list.retainAll(list1);
+        //System.out.println("common ele's:"+ list);
+        List<Integer> list1 = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        List<Integer> list2 = Arrays.asList(4, 5, 6, 7);
+
+        list1.retainAll(list2);  // Modifies list1 to contain only common elements
+
+        System.out.println("Common elements: " + list1);
+        /*Set<Integer> set = new HashSet<>(list);
+        List<Integer> commonRes=list1.stream().filter(x->set.contains(x)).toList();
+        System.out.println("intersection of two ele's are:"+ commonRes);
+        // 2nd approach
+        Set<Integer> set1= new HashSet<>(Arrays.asList(1,2,3,4,5));
+        Set<Integer> set2=new HashSet<>(Arrays.asList(3,5,6,7));
+        set1.retainAll(set2);
+        System.out.println(set1);*/
+
+        // find common ele's from two arrays using map
+        /*int[] arr1 = {1,2,3,4,5};
+        int[] arr2 = {4,5,6,7,8};
+        Map<Integer,Boolean> map = new HashMap<>();
+        List<Integer> common = new ArrayList<>();
+        for (int a:arr1){
+            map.put(a,true);
+        }
+        for (int num:arr2){
+            if(map.containsKey(num)){
+                common.add(num);
+            }
+        }
+        System.out.println("Common ele's are:"+ common);*/
+
+        /*Map <String,Integer>map1 = new HashMap<>();
+        map1.put("sunflower", 1);
+        map1.put("Rose", 2);
+        map1.put("marigold", 3);
+        Map<String,Integer> map2= new HashMap<>();
+        map2.put("Leela", 1);
+        map2.put("Pavani",2);
+        map2.put("sita",3);
+        Map<String , Integer> mergedMap = new HashMap<>(map1);
+        System.out.println(mergedMap);
+        mergedMap.putAll(map2);
+        System.out.println(mergedMap);*/
+
+        /*//find the occurence of the given sting using HashMap
+        char c=findFirstNonRepeaing("lleela");
+        System.out.println(c);*/
+        Map<String,Integer> map= new TreeMap<>();
+        map.put("mango", 1);
+        map.put("banana", 2);
+        map.put("apple",3);
+        map.put("apple1",4);
+        List<Map.Entry<String,Integer>> entryList=new ArrayList<>(map.entrySet());
+        //entryList.sort(Map.Entry.comparingByKey());
+        for (Map.Entry<String,Integer> entry:entryList){
+            System.out.println(entry.getKey()+" ="+entry.getValue());
+        }
+    }
+
+    public static Character findFirstNonRepeaing(String str) {
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        char[] s = str.toCharArray();
+        for (char c : s) {
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+//            System.out.println(frequencyMap);
+        }
+        for (char c: s){
+            if (frequencyMap.get(c)==1){
+                return c;
+            }
+        }
+        return null;
+    }
+
+
+}
+    /*//second and optimize for approach
+    private static int findSecondLargest(List<Integer> listOfIntegers) {
+
+        if (listOfIntegers.size()<2){
+            throw new IllegalArgumentException("List must contain two elements");
+        }
+
+        int largest = Integer.MIN_VALUE;
+        int secondLargest = Integer.MIN_VALUE;
+        for (int num:listOfIntegers){
+            if (num>largest){
+                largest = num;
+                secondLargest = largest;
+            } else if (num > secondLargest && num !=largest) {
+                secondLargest = num;
+            }
+        }
+        if (secondLargest==Integer.MIN_VALUE){
+            throw new IllegalArgumentException("No second largest numb found");
+        }
+        return secondLargest;
+*/
+

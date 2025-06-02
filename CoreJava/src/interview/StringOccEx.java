@@ -1,0 +1,64 @@
+package interview;
+
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class StringOccEx {
+    public static void main(String[] args) {
+        String str = "Leelavathi";
+        Map<Character,Long> occs=str.chars().mapToObj(c->(char)c).collect(Collectors.groupingBy(c->c, LinkedHashMap::new, Collectors.counting()));
+        //System.out.println(occs);
+        char result=occs.entrySet().stream().filter(entry-> entry.getValue()==2)
+                .map(c->c.getKey()).skip(1).findFirst().get();
+         System.out.println(result);
+        Optional<Long> max =occs.values().stream().max(Long::compare);
+        //System.out.println(max.get());
+        occs.entrySet().stream().forEach(entry->{
+            /*if (entry.getValue()<max.get()){
+                System.out.println(entry.getKey()+"="+entry.getValue());
+            }*/
+            if (entry.getValue()== max.get()){
+                System.out.println(entry.getKey()+"="+entry.getValue());
+            }
+        });
+        //Reverse each word of a string using Java 8 streams?
+        String str1 = "Java concept of the day";
+        String s=Arrays.stream(str1.split(" ")).map(word->new StringBuilder(word).reverse().toString())
+                .collect(Collectors.joining(" "));
+        //System.out.println(s);
+        String str2 = "Hello worlD";
+        //String s1=Arrays.stream(str2.split(" ")).map(c->new StringBuilder(c).reverse().toString()).collect(Collectors.joining());
+        //System.out.println(s1);
+        Map<Character,Long> occs1 =str2.chars().mapToObj(c->(char)c)
+                .collect(Collectors.groupingBy(c->c, LinkedHashMap::new, Collectors.counting()));
+       // System.out.println(occs1);
+        String res=occs1.keySet().stream().filter(k->Character.isUpperCase(k))
+                .map(c-> String.valueOf(c)).collect(Collectors.joining());
+        System.out.println(res);
+        Map<Character,Long> res1=occs1.keySet().stream().filter(k->Character.isUpperCase(k)).collect(Collectors.groupingBy(c->c,Collectors.counting()));
+        System.out.println(res1);
+        // to remove duplicates
+        Set set=str2.chars().mapToObj(c->(char)c).collect(Collectors.toCollection(LinkedHashSet::new));
+        System.out.println(set);
+        // if we want it again in a astring format
+        String s2=str2.chars().mapToObj(c->(char)c).collect(Collectors.toCollection(LinkedHashSet::new)).stream()
+                .map(c->String.valueOf(c)).collect(Collectors.joining());
+        System.out.println(s2);
+        Integer[] arr1 = {1,2,3,4,5};
+        Integer[] arr2 = {3,4,5,6};
+        Set<Integer> set1 = new HashSet<>(Arrays.asList(arr1));
+        List<Integer> common=Arrays.stream(arr2).filter(x->set1.contains(x)).collect(Collectors.toList());
+        System.out.println(common);
+
+        int arr3[] = {12,23,14,45};
+        int arr4[]= {12,34,45,56,};
+        int c[]=IntStream.concat(Arrays.stream(arr3),Arrays.stream(arr4)).sorted().distinct().toArray();
+        System.out.println(Arrays.toString(c));
+        List<Integer> listOfIntegers1 = Arrays.asList(111, 222, 333, 111, 555, 333, 777, 222);
+        Set<Integer> unique= new HashSet<>();
+
+        Set<Integer> duplictes = listOfIntegers1.stream().filter(i->  unique.add(i)).collect(Collectors.toSet());
+        System.out.println(duplictes);;
+    }
+}

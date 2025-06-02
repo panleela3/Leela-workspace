@@ -1,0 +1,38 @@
+package com.java.cloning;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ImmutableMain {
+    public static void main(String[] args) {
+        //Employee employee= new Employee(501,"Leela");
+        Map<String,Integer> mapProps= new HashMap<>();
+        mapProps.put("Leela",20);
+        mapProps.put("Bala",21);
+        mapProps.put("Naga",22);
+        mapProps.put("Sai",23);
+        ImmutableEx immutableEx= new ImmutableEx("IT","Kothrud",mapProps);
+        //checking through constructor(1st defence)
+//        employee.setEmpId(9);
+        String s=immutableEx.getDept();
+        String str=immutableEx.getAddress();
+
+        s="Devops";
+        str="Jonnalagadda";
+        /*immutableEx.getEmployee().setEmpId(502);
+        immutableEx.getEmployee().setEmpName("Leelabala");*/
+        //checking through constructor(1st defence)
+        mapProps.put("It",24);
+        //checking through getter(2nd defence)
+        Map<String,Integer> refMap= immutableEx.getProps();
+        refMap.put("Sankar",5);
+
+        System.out.println("Existing obj : "+immutableEx.getDept() + " "+ immutableEx.getAddress()
+                + " "+ immutableEx.getProps());
+
+        System.out.println(immutableEx.getAddress().equals(str));
+        System.out.println(immutableEx.getProps().equals(refMap));
+
+
+    }
+}
